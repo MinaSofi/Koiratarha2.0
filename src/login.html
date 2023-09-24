@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Koiratarha - Sisäänkirjautuminen</title>
+    <link href="appStyle.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600&family=Raleway&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Koiratarha</h1>
+    <div id="userContent">
+        <p>Käyttäjätunnus:</p>
+        <input type="text" id="username" name="username" placeholder="Käyttäjätunnus">
+        <p>Salasana:</p>
+        <input type="password" id="password" name="password" placeholder="Salasana">
+        <br>
+        <button type="submit" id="loginButton" onclick="login()">Kirjaudu sisään</button>
+    </div>
+</body>
+<script>
+    function login() {
+        location.href = "dogPark.html";
+    }
+</script>
