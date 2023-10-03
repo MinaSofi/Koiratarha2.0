@@ -1,0 +1,35 @@
+type User {
+  id: ID
+  username: String
+}
+
+input Credentials {
+  username: String!
+  password: String!
+}
+
+input UserInput {
+  username: String!
+  password: String!
+}
+
+type Query {
+  users: [User]
+  userById(id: ID!): User
+}
+
+type TokenMessage {
+  token: String!
+  message: String!
+  user: User!
+}
+
+type RegisterMessage {
+  message: String
+  data: User
+}
+
+type Mutation {
+  login(username: String!, password: String!): TokenMessage
+  createUser(user: UserInput!): RegisterMessage
+}
