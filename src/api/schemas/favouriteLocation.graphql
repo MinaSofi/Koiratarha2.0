@@ -1,0 +1,20 @@
+type FavouriteLocation {
+    id: ID
+    loc_name: String
+    address: String
+    city: String
+    user_id: User
+}
+
+type Query {
+    favourites: [FavouriteLocation]
+}
+
+type Mutation {
+    addFavourite(
+        loc_name: String!
+        address: String!
+        city: String!
+    ): FavouriteLocation
+    deleteFavourite(id: ID!): FavouriteLocation
+}
