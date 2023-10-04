@@ -2,94 +2,107 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Koiratarha</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" rel="stylesheet">
     <link href="appStyle.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600&family=Raleway&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-    <div id="mainContent">
-        <header>
-            <h1>Koiratarha</h1>
-            <nav>
-                <ul>
-                    <li><a href="dogPark.html">Kartat<br><img class="icon" src="images/img/map50color.png" width="50" height="50" alt="Kartta-ikoni"></a></li>
-                    <li><a href="gallery.html">Galleria<br><img class="icon" src="images/img/temp50color.png" width="50" height="50" alt="Lämpötila-ikoni"></a></li>
-                    <li><a href="logout.html">Kirjaudu ulos<br><img src="images/img/private50color.png" width="50" height="50" alt="Lukko-ikoni"></a></li>
-                </ul>
-            </nav>
-        </header>
-    
-        <div id="mapAndTexts">
-            <div id="map"></div>
-    
-            <div id="textsOfPage">
-                <div id="radioGroupGroup">
-                    <p>Näytä kartalla:</p>
-                    <div id="radioGroup">
-                        <div>
-                            <input type="radio" id="placeChoice1"
-                                   name="place" value="enclosure">
-                            <label for="placeChoice1">Aitaukset</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="placeChoice2"
-                                   name="place" value="trail">
-                            <label for="placeChoice2">Hiihtoladut</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="placeChoice3"
-                                   name="place" value="toilet">
-                            <label for="placeChoice3">Käymälät</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="placeChoice4"
-                                   name="place" value="forest">
-                            <label for="placeChoice4">Metsät</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="placeChoice5"
-                                   name="place" value="beach">
-                            <label for="placeChoice5">Uimarannat</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="placeChoice6"
-                                   name="place" value="all">
-                            <label for="placeChoice6">Kaikki</label>
-                        </div>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <header class="text-center">
+                <h1>Koiratarha</h1>
+                <nav>
+                    <ul>
+                        <li><a href="dogPark.html">Kartat<br><img class="icon" src="images/img/map50color.png" width="50" height="50" alt="Kartta-ikoni"></a></li>
+                        <li><a href="gallery.html">Galleria<br><img class="icon" src="images/img/temp50color.png" width="50" height="50" alt="Lämpötila-ikoni"></a></li>
+                        <li><a href="index.html">Kirjaudu ulos<br><img src="images/img/private50color.png" width="50" height="50" alt="Lukko-ikoni"></a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+    </div>
+        
+    <div id="mapAndTexts">
+        <div id="map"></div>
+
+        <div id="textsOfPage">
+            <div id="radioGroupGroup">
+                <p>Näytä kartalla:</p>
+                <div id="radioGroup">
+                    <div>
+                        <input type="radio" id="placeChoice1"
+                                name="place" value="enclosure">
+                        <label for="placeChoice1">Aitaukset</label>
                     </div>
-                    <div class="center">
-                        <button id="submitBtn">Valitse</button>
+                    <div>
+                        <input type="radio" id="placeChoice2"
+                                name="place" value="trail">
+                        <label for="placeChoice2">Hiihtoladut</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="placeChoice3"
+                                name="place" value="toilet">
+                        <label for="placeChoice3">Käymälät</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="placeChoice4"
+                                name="place" value="forest">
+                        <label for="placeChoice4">Metsät</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="placeChoice5"
+                                name="place" value="beach">
+                        <label for="placeChoice5">Uimarannat</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="placeChoice6"
+                                name="place" value="all">
+                        <label for="placeChoice6">Kaikki</label>
                     </div>
                 </div>
-                <div id="placeInfoGroup">
-                    <div id="placeInfo">
-                        <p id="name"></p>
-                        <p id="address"></p>
-                        <p id="city"></p>
-                    </div>
-                    <div class="center">
-                        <button id="navigationBtn">Hae reitti</button>
-                    </div>
-                    <div id="routeColours">
-                        <p><span class="green">vihreä</span>: kävele</p>
-                        <p><span class="purple">violetti</span>: bussi</p>
-                        <p><span class="blue">sininen</span>: juna</p>
-                        <p><span class="pink">pinkki</span>: raitiovaunu</p>
-                        <p><span class="coral">oranssi</span>: muut</p>
-                    </div>
+                <div class="center">
+                    <button id="submitBtn">Valitse</button>
+                </div>
+            </div>
+            <div id="placeInfoGroup">
+                <div id="placeInfo">
+                    <p id="name"></p>
+                    <p id="address"></p>
+                    <p id="city"></p>
+                </div>
+                <div class="center">
+                    <button id="navigationBtn">Hae reitti</button>
+                </div>
+                <div id="routeColours">
+                    <p><span class="green">vihreä</span>: kävele</p>
+                    <p><span class="purple">violetti</span>: bussi</p>
+                    <p><span class="blue">sininen</span>: juna</p>
+                    <p><span class="pink">pinkki</span>: raitiovaunu</p>
+                    <p><span class="coral">oranssi</span>: muut</p>
                 </div>
             </div>
         </div>
     </div>
-    <footer class="projectDetails">
-        <a href="#mainContent"><img src="images/img/map50color.png" width="50" height="50" alt="Kartta-ikoni"></a>
-        <a href="gallery.html"><img class="icon" src="images/img/temp50color.png" width="50" height="50" alt="Lämpötila-ikoni"></a>
-        <a href="logout.html"><img src="images/img/private50color.png" width="50" height="50" alt="Lukko-ikoni"></a>
-        <p>Web-sovelluskehitys 2 TX00DZ38-3006<br>Metropolia Ammattikorkeakoulu<br>2023</p>
+
+    <footer class="text-center p-4">
+        <div class="container">
+            <div class="col">
+                    <a href="dogPark.html"><img src="images/img/map50color.png" width="50" height="50" alt="Kartta-ikoni"></a>
+                    <a href="gallery.html"><img class="icon" src="images/img/temp50color.png" width="50" height="50" alt="Lämpötila-ikoni"></a>
+                    <a href="index.html"><img src="images/img/private50color.png" width="50" height="50" alt="Lukko-ikoni"></a>
+                    <p>Web-sovelluskehitys 2 TX00DZ38-3006<br>Metropolia Ammattikorkeakoulu<br>2023</p>
+            </div>
+        </div>
     </footer>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
