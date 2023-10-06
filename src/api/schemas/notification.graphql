@@ -1,0 +1,20 @@
+scalar DateTime
+
+type Notification {
+    id: ID
+    loc_name: String
+    time: DateTime
+    user_id: User
+}
+
+type Query {
+    notifications: [Notification]
+}
+
+type Mutation {
+    addNotification(
+        loc_name: String!
+        time: DateTime!
+    ): Notification
+    deleteNotification(id: ID!): Notification
+}
