@@ -26,12 +26,6 @@ aside {
     border-radius: 20px;
 }
 
-#content {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-}
-
 h1 {
     font-family: 'Nunito Sans', sans-serif;
     font-size: 40px;
@@ -48,7 +42,7 @@ body {
     font-family: 'Raleway', sans-serif;
 }
 
-nav ul {
+#navBg {
     background: #CB997E;
     list-style-type: none;
     display: flex;
@@ -59,15 +53,13 @@ nav ul {
     padding-left: 0;
 }
 
-nav li {
+#navContentBg {
     background: #B7B7A4;
-    margin: 0;
-    padding: 0;
     border: 3px solid #F0EFEB;
     width: 10%;
 }
 
-nav li a {
+#navContent {
     color: black;
     display: block;
     padding: 10px 15px;
