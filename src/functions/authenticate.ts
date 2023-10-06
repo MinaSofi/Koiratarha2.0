@@ -23,7 +23,6 @@ export default async (req: Request) => {
     return {};
   }
 
-  /*
   // check that user is in auth server
   const response = await fetch(`${process.env.AUTH_URL}/users/token`, {
     headers: {Authorization: req.headers.authorization as string},
@@ -31,7 +30,6 @@ export default async (req: Request) => {
   if (!response.ok) {
     return {};
   }
-  */
 
   const userIdWithToken: UserIdWithToken = {
     id: userFromToken.id,

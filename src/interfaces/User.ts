@@ -1,20 +1,20 @@
 interface User {
-    username: string;
-    password: string;
+  username: string;
+  password: string;
 }
 
 interface UserLogin {
-    username: string;
-    id: string;
+  username: string;
+  id: string;
 }
 
 interface TokenUser {
-    id: string;
+  id: string;
 }
 
 interface UserIdWithToken {
-    id: string;
-    token: string;
+  id: string;
+  token: string;
 }
 
-export {User, UserLogin, TokenUser, UserIdWithToken}
+export {User, UserLogin, TokenUser, UserIdWithToken};

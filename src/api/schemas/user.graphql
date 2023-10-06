@@ -29,7 +29,20 @@ type RegisterMessage {
   data: User
 }
 
+type TokenMessage {
+  token: String!
+  message: String!
+  user: User!
+}
+
+type DeleteMessage {
+  message: String
+  data: User
+}
+
 type Mutation {
   login(username: String!, password: String!): TokenMessage
   createUser(user: UserInput!): RegisterMessage
+  updateUser(user: UserInput!): TokenMessage
+  deleteUser(id: String!): DeleteMessage
 }
