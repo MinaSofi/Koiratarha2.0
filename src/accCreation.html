@@ -2,25 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Koiratarha - Käyttäjän luonti</title>
     <link href="appStyle.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600&family=Raleway&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
 </head>
 <body>
-    <h1>Koiratarha</h1>
-    <div id="userContent">
-        <p>Käyttäjätunnus:</p>
-        <input type="text" id="username" name="username" placeholder="Käyttäjätunnus">
-        <p>Salasana:</p>
-        <input type="password" id="password" name="password" placeholder="Salasana">
-        <br>
-        <button type="submit" id="loginButton" onclick="login()">Rekisteröidy</button>
+    <div class="container-fluid">
+        <div class="row justify-content-center text-center">
+            <h1 class="p-2">Koiratarha</h1>
+            <div id="userContent">
+                <div class="row p-4">
+                    <p>Käyttäjätunnus:</p>
+                    <input type="text" id="username" name="username" placeholder="Käyttäjätunnus">
+                </div>
+                <div class="row p-4">
+                    <p>Salasana:</p>
+                    <input type="password" id="password" name="password" placeholder="Salasana">
+                </div>
+                <div class="row p-4">
+                    <button type="submit" id="loginButton" onclick="login()">Rekisteröidy</button>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <footer class="text-center fixed-bottom">
+        <div class="container">
+            <div class="col">
+                <p>Web-sovelluskehitys 2 TX00DZ38-3006<br>Metropolia Ammattikorkeakoulu<br>2023</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function login() {
+            location.href = "dogPark.html";
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
-<script>
-    function login() {
-        location.href = "dogPark.html";
-    }
-</script>
