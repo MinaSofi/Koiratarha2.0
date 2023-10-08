@@ -42,21 +42,21 @@ body {
     font-family: 'Raleway', sans-serif;
 }
 
+#nav {
+    background: #CB997E;
+}
+
 #navBg {
     background: #CB997E;
     list-style-type: none;
-    display: flex;
-    flex-flow: row wrap;
     border: 3px solid #CB997E;
     justify-content: center;
-    margin: 20px 0 20px 0;
-    padding-left: 0;
+    border-radius: 10px;
 }
 
 #navContentBg {
     background: #B7B7A4;
     border: 3px solid #F0EFEB;
-    width: 10%;
 }
 
 #navContent {
@@ -66,15 +66,7 @@ body {
     text-decoration: none;
 }
 
-nav li:nth-last-child(3) {
-    border-right: none;
-}
-
-nav li:nth-last-child(2) {
-    border-right: none;
-}
-
-nav li a:hover {
+#navContentBg:hover {
     background: #A5A58D;
 }
 
