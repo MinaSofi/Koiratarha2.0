@@ -24,7 +24,21 @@ export default {
       const note = new notificationModel(args);
       return await note.save();
     },
-    deleteFavourite: async (_parent: undefined, args: {id: string}) => {
+    deleteNotification: async (
+      _parent: undefined,
+      args: {id: string},
+      user: UserIdWithToken
+    ) => {
+      const notification = await notificationModel.findById(args.id);
+
+      if (!notification) {
+        throw new Error('Notification not found');
+      }
+
+      if (user.id !== notification.user_id) {
+        throw new Error('User not authorized');
+      }
+
       return await notificationModel.findByIdAndDelete(args.id);
     },
   },
