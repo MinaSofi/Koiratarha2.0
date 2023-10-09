@@ -4,7 +4,6 @@ import request from 'supertest';
 // eslint-disable-next-line node/no-extraneous-import
 import expect from 'expect';
 import LoginMessageResponse from '../src/interfaces/LoginMessageResponse';
-import ErrorResponse from '../src/interfaces/ErrorResponse';
 
 const postUser = (
   url: string | Function,
@@ -122,39 +121,6 @@ const putUser = (url: string | Function, token: string) => {
           expect(userData.data).toHaveProperty('id');
           expect(userData.data.username).toBe(newName);
           resolve(response.body.data.updateUser);
-        }
-      });
-  });
-};
-
-const deleteUser = (
-  url: string | Function,
-  id: string,
-  token: string
-): Promise<ErrorResponse> => {
-  return new Promise((resolve, reject) => {
-    request(url)
-      .post('/graphql')
-      .set('Authorization', 'Bearer ' + token)
-      .send({
-        query: `mutation DeleteUser($deleteUserId: ID!) {
-            deleteUser(id: $deleteUserId) {
-              user {
-                id
-              }
-            }
-          }`,
-        variables: {
-          deleteUserId: id,
-        },
-      })
-      .expect(200, (err, response) => {
-        if (err) {
-          reject(err);
-        } else {
-          const userData = response.body.data.deleteUserAsAdmin;
-          expect(userData.user.id).toBe(id);
-          resolve(response.body.data.deleteUser);
         }
       });
   });
