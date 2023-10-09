@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Koiratarha - Kirjautumistietojen muokkaus</title>
+    <link href="appStyle.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600&family=Raleway&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-center text-center">
+            <h1 class="p-2">Koiratarha</h1>
+            <nav id="nav">
+                <ul id="navBg" class="list-group list-group-horizontal">
+                    <li id="navContentPage" class="list-group-item"><a id="navContent" href="dogPark.html">Kartat<br>
+                        <img class="icon" src="images/img/kartat50.png" width="50" height="50" alt="Kartta-ikoni"></a></li>
+                    <li id="navContentPage" class="list-group-item"><a id="navContent" href="gallery.html">Galleria<br>
+                        <img class="icon" src="images/img/galleria50.png" width="50" height="50" alt="Galleria-ikoni"></a></li>
+                    <li id="navContentPage" class="list-group-item"><a id="navContent" href="editAcc.html">Muokkaa tietoja<br>
+                        <img class="icon" src="images/img/muokkaa50.png" width="50" height="50" alt="Muokkaus-ikoni"></a></li>
+                    <li id="navContentPage" class="list-group-item"><a id="navContent" href="index.html">Kirjaudu ulos<br>
+                        <img class="icon" src="images/img/ulos50.png" width="50" height="50" alt="Uloskirjautumis-ikoni"></a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="container-fluid">
+        <div class="row justify-content-center text-center">
+            <div id="userContent">
+                <div class="row p-4">
+                    <p>Alla on lista palvelun käyttäjistä. Käyttäjä on mahdollista poistaa valitsemalla se listasta. Poistettua käyttäjää ei ole mahdollista palauttaa.</p>
+                </div>
+                <div class="p-4">
+                    <p>Käyttäjät:</p>
+                    <div class="form-check container col-sm-4">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Käyttäjä1
+                        </label>
+                    </div>          
+                    <div class="form-check container col-sm-4">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Käyttäjä2
+                        </label>
+                    </div>            
+                </div>
+                <div class="row p-4">
+                    <button type="submit" id="loginButton" onclick="login()">Poista</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center p-4">
+        <div class="container">
+            <div class="col">
+                <a href="dogPark.html"><img class="icon" src="images/img/kartat50.png" width="50" height="50" alt="Kartta-ikoni"></a>
+                <a href="gallery.html"><img class="icon" src="images/img/galleria50.png" width="50" height="50" alt="Galleria-ikoni"></a>
+                <a href="editAcc.html"><img class="icon" src="images/img/muokkaa50.png" width="50" height="50" alt="Muokkaus-ikoni"></a>
+                <a href="index.html"><img class="icon" src="images/img/ulos50.png" width="50" height="50" alt="Uloskirjautumis-ikoni"></a>
+                <p>Web-sovelluskehitys 2 TX00DZ38-3006<br>Metropolia Ammattikorkeakoulu<br>2023</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function login() {
+            
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
