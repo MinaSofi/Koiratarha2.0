@@ -3,11 +3,6 @@ type User {
   username: String
 }
 
-input Credentials {
-  username: String!
-  password: String!
-}
-
 input UserInput {
   username: String!
   password: String!
@@ -29,10 +24,9 @@ type RegisterMessage {
   data: User
 }
 
-type TokenMessage {
-  token: String!
-  message: String!
-  user: User!
+type UpdateMessage {
+  message: String
+  data: User
 }
 
 type DeleteMessage {
@@ -43,6 +37,6 @@ type DeleteMessage {
 type Mutation {
   login(username: String!, password: String!): TokenMessage
   createUser(user: UserInput!): RegisterMessage
-  updateUser(user: UserInput!): TokenMessage
+  updateUser(user: UserModify!): UpdateMessage
   deleteUser(id: String!): DeleteMessage
 }

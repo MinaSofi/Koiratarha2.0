@@ -1,5 +1,9 @@
 import app from '../src/app';
-import { postUser } from './userFunctions';
+import {
+    postUser,
+    loginUser,
+    putUser
+} from './userFunctions';
 import { UserTest } from '../src/interfaces/User';
 import mongoose from 'mongoose';
 import { getNotFound } from './testFunctions';
@@ -43,5 +47,14 @@ describe('Testing graphql api', () => {
 
     it('should create a new user', async () => {
         await postUser(app, testUser);
+    });
+
+    it('should login user', async () => {
+        userData = await loginUser(app, testUser);
+    });
+
+    it('should update user', async () => {
+        console.log("APITEST YEAH", userData)
+        await putUser(app, userData.token!);
     });
 })
