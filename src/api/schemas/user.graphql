@@ -10,7 +10,7 @@ input UserInput {
 
 type Query {
   users: [User]
-  userById(id: ID!): User
+  userById(id: String!): User
 }
 
 type TokenMessage {

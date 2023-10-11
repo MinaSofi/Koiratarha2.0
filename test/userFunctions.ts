@@ -5,10 +5,11 @@ import request from 'supertest';
 import expect from 'expect';
 import LoginMessageResponse from "../src/interfaces/LoginMessageResponse";
 import randomstring from "randomstring";
+import ErrorResponse from '../src/interfaces/ErrorResponse';
 
 const postUser = (
   url: string | Function,
-  user: UserTest
+  user: UserTest,
 ): Promise<UserTest> => {
   return new Promise((resolve, reject) => {
     request(url)
@@ -127,4 +128,92 @@ const putUser = (url: string | Function, token: string) => {
   });
 };
 
-export {postUser, loginUser, putUser};
+const deleteUser = (
+  url: string | Function,
+  id: string,
+  token: string
+): Promise<ErrorResponse> => {
+  return new Promise((resolve, reject) => {
+    request(url)
+      .post('/graphql')
+      .set('Authorization', 'Bearer ' + token)
+      .send({
+        query: `mutation DeleteUser($deleteUserId: String!) {
+          deleteUser(id: $deleteUserId) {
+            data {
+              id
+            }
+          }
+        }`,
+        variables: {
+          deleteUserId: id,
+        },
+      })
+      .expect(200, (err, response) => {
+        if (err) {
+          reject(err);
+        } else {
+          const userData = response.body.data.deleteUser;
+          expect(userData.data.id).toBe(id);
+          resolve(response.body.data.deleteUser);
+        }
+      });
+  });
+};
+
+const getUser = (url: string | Function): Promise<UserTest[]> => {
+  return new Promise((resolve, reject) => {
+    request(url)
+      .post('/graphql')
+      .set('Content-type', 'application/json')
+      .send({
+        query: '{users{id username }}',
+      })
+      .expect(200, (err, response) => {
+        if (err) {
+          reject(err);
+        } else {
+          const users = response.body.data.users;
+          expect(users).toBeInstanceOf(Array);
+          expect(users[0]).toHaveProperty('id');
+          expect(users[0]).toHaveProperty('username');
+          resolve(response.body.data.users);
+        }
+      });
+  });
+};
+
+const getSingleUser = (
+  url: string | Function,
+  id: string
+): Promise<UserTest> => {
+  return new Promise((resolve, reject) => {
+    request(url)
+      .post('/graphql')
+      .set('Content-type', 'application/json')
+      .send({
+        query: `query UserById($userByIdId: String!) {
+          userById(id: $userByIdId) {
+            id
+            username
+          }
+        }`,
+        variables: {
+          userByIdId: id,
+        },
+      })
+      .expect(200, (err, response) => {
+        if (err) {
+          reject(err);
+        } else {
+          console.log(response.body)
+          const user = response.body.data.userById;
+          expect(user.id).toBe(id);
+          expect(user).toHaveProperty('username');
+          resolve(response.body.data.userById);
+        }
+      });
+  });
+};
+
+export {postUser, loginUser, putUser, deleteUser, getUser, getSingleUser};
