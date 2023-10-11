@@ -37,6 +37,6 @@ type DeleteMessage {
 type Mutation {
   login(username: String!, password: String!): TokenMessage
   createUser(user: UserInput!): RegisterMessage
-  updateUser(user: UserModify!): UpdateMessage
+  updateUser(user: UserInput!): UpdateMessage
   deleteUser(id: String!): DeleteMessage
 }

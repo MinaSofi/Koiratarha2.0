@@ -1,3 +1,4 @@
+// eslint-disable-next-line node/no-unpublished-import
 import request from 'supertest';
 
 const getNotFound = (url: string | Function) => {

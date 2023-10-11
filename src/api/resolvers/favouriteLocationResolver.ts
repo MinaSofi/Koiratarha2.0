@@ -24,7 +24,21 @@ export default {
       const favLoc = new favouriteLocationModel(args);
       return await favLoc.save();
     },
-    deleteFavourite: async (_parent: undefined, args: {id: string}) => {
+    deleteFavourite: async (
+      _parent: undefined,
+      args: {id: string},
+      user: UserIdWithToken
+    ) => {
+      const favourite = await favouriteLocationModel.findById(args.id);
+
+      if (!favourite) {
+        throw new Error('Location not found');
+      }
+
+      if (user.id !== favourite.user_id) {
+        throw new Error('User not authorized');
+      }
+
       return await favouriteLocationModel.findByIdAndDelete(args.id);
     },
   },
