@@ -1,4 +1,4 @@
 export default interface MessageResponse {
-    message: string;
-    id?: number;
-  }
+  message: string;
+  id?: number;
+}
