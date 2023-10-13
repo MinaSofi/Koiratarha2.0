@@ -8,6 +8,11 @@ export default {
     favourites: async () => {
       return await favouriteLocationModel.find();
     },
+    favouritesByUser: async(_: undefined, args: {userId: string}) => {
+      const user = await favouriteLocationModel.find({user_id: args.userId});
+      
+      return user;
+    }
   },
   Mutation: {
     addFavourite: async (
@@ -30,12 +35,12 @@ export default {
       user: UserIdWithToken
     ) => {
       const favourite = await favouriteLocationModel.findById(args.id);
-
+      
       if (!favourite) {
         throw new Error('Location not found');
       }
 
-      if (user.id !== favourite.user_id) {
+      if (user.id !== favourite.user_id.toString()) {
         throw new Error('User not authorized');
       }
 

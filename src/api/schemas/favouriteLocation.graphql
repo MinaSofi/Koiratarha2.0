@@ -8,6 +8,7 @@ type FavouriteLocation {
 
 type Query {
     favourites: [FavouriteLocation]
+    favouritesByUser(userId: ID!): [FavouriteLocation]
 }
 
 type Mutation {

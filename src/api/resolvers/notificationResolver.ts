@@ -8,6 +8,11 @@ export default {
     notifications: async () => {
       return await notificationModel.find();
     },
+    notificationsByUser: async(_: undefined, args: {userId: string}) => {
+      const user = await notificationModel.find({user_id: args.userId});
+      
+      return user;
+    }
   },
   Mutation: {
     addNotification: async (
@@ -35,7 +40,7 @@ export default {
         throw new Error('Notification not found');
       }
 
-      if (user.id !== notification.user_id) {
+      if (user.id !== notification.user_id.toString()) {
         throw new Error('User not authorized');
       }
 

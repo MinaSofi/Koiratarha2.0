@@ -10,13 +10,7 @@ input UserInput {
 
 type Query {
   users: [User]
-  userById(id: ID!): User
-}
-
-type TokenMessage {
-  token: String!
-  message: String!
-  user: User!
+  userById(id: String!): User
 }
 
 type TokenMessage {

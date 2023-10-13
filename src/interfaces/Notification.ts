@@ -6,4 +6,12 @@ interface Notification extends Document {
     user_id: Types.ObjectId | string;
 }
 
-export {Notification};
+interface NotificationTest {
+    id?: string,
+    loc_name?: string;
+    locName?: string;
+    time?: Date;
+    user_id?: Types.ObjectId | string;
+}
+
+export {Notification, NotificationTest};

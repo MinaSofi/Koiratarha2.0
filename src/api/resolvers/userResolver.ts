@@ -22,6 +22,15 @@ export default {
       console.log(users);
       return users.data;
     },
+    userById: async (
+      _parent: undefined,
+      args: {id: string},
+    ) => {
+      const user = await fetchData<AuthMessageResponse>(
+        `${process.env.AUTH_URL}/users/${args.id}`
+      );
+      return user.data;
+    }
   },
   Mutation: {
     login: async (
