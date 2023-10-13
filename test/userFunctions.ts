@@ -161,7 +161,7 @@ const deleteUser = (
   });
 };
 
-const getUser = (url: string | Function): Promise<UserTest[]> => {
+const getUsers = (url: string | Function): Promise<UserTest[]> => {
   return new Promise((resolve, reject) => {
     request(url)
       .post('/graphql')
@@ -216,4 +216,37 @@ const getSingleUser = (
   });
 };
 
-export {postUser, loginUser, putUser, deleteUser, getUser, getSingleUser};
+const wrongUserDeleteUser = (
+  url: string | Function,
+  id: string,
+  token: string
+): Promise<ErrorResponse> => {
+  return new Promise((resolve, reject) => {
+    request(url)
+      .post('/graphql')
+      .set('Authorization', 'Bearer ' + token)
+      .send({
+        query: `mutation DeleteUser($deleteUserId: String!) {
+          deleteUser(id: $deleteUserId) {
+            data {
+              id
+            }
+          }
+        }`,
+        variables: {
+          deleteUserId: id,
+        },
+      })
+      .expect(200, (err, response) => {
+        if (err) {
+          reject(err);
+        } else {
+          const userData = response.body.data.deleteUser;
+          expect(userData).toBe(null);
+          resolve(response.body.data.deleteUser);
+        }
+      });
+  });
+};
+
+export {postUser, loginUser, putUser, deleteUser, getUsers, getSingleUser, wrongUserDeleteUser};

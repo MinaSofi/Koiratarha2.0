@@ -9,6 +9,7 @@ type Notification {
 
 type Query {
     notifications: [Notification]
+    notificationsByUser(userId: ID!): [Notification]
 }
 
 type Mutation {

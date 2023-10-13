@@ -7,4 +7,13 @@ interface FavouriteLocation extends Document {
     user_id: Types.ObjectId | string;
 }
 
-export {FavouriteLocation};
+interface FavLocTest {
+    id?: string;
+    loc_name?: string;
+    locName?: string;
+    address?: string;
+    city?: string;
+    user_id?: Types.ObjectId | string;
+}
+
+export {FavouriteLocation, FavLocTest};
