@@ -111,6 +111,12 @@ button {
     font-family: inherit;
 }
 
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 button:hover {
     background: #A5A58D;
 }

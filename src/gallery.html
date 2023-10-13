@@ -37,6 +37,9 @@
         <div class="row p-3">
             <h2 id="header2">Galleria</h2>
 
+            <div class="buttonContainer">
+                <button id="addPictureButton" class="button" onclick="goToUploadPic()">Lisää kuva</button>
+            </div>
             <div class="row mx-auto">
                 <a class="lightbox-link" href="images/img/Kuu-koirapuisto2.jpg" data-lightbox="image-1" data-title="1) Kuun ensimmäinen koirapuisto">
                     <img src="images/thumbnails/Kuu-koirapuisto2-thumb.jpg" style="width: 150px" alt="Kuun ensimmäinen koirapuisto">
@@ -57,6 +60,11 @@
         </div>
     </footer>
 
+    <script>
+        function goToUploadPic() {
+        location.href = "uploadPic.html";
+        }
+    </script>
     <script src="../node_modules/lightbox2/dist/js/lightbox-plus-jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
