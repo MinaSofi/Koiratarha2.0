@@ -1,0 +1,21 @@
+type Picture {
+    id: ID
+    title: String
+    picture_name: String
+    user_id: User
+}
+
+type Query {
+    pictures: [Picture]
+}
+
+type Mutation {
+    addPicture(
+        title: String!
+    ): Picture
+    updatePicture(
+        id: ID!
+        title: String
+    ): Picture
+    deletePicture(id: ID!): Picture
+}
