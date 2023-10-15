@@ -3,13 +3,12 @@ import {UserTest} from '../src/interfaces/User';
 import request from 'supertest';
 // eslint-disable-next-line node/no-extraneous-import
 import expect from 'expect';
-import LoginMessageResponse from "../src/interfaces/LoginMessageResponse";
-import randomstring from "randomstring";
+import LoginMessageResponse from '../src/interfaces/LoginMessageResponse';
 import ErrorResponse from '../src/interfaces/ErrorResponse';
 
 const postUser = (
   url: string | Function,
-  user: UserTest,
+  user: UserTest
 ): Promise<UserTest> => {
   return new Promise((resolve, reject) => {
     request(url)
@@ -206,7 +205,7 @@ const getSingleUser = (
         if (err) {
           reject(err);
         } else {
-          console.log(response.body)
+          console.log(response.body);
           const user = response.body.data.userById;
           expect(user.id).toBe(id);
           expect(user).toHaveProperty('username');
@@ -249,4 +248,12 @@ const wrongUserDeleteUser = (
   });
 };
 
-export {postUser, loginUser, putUser, deleteUser, getUsers, getSingleUser, wrongUserDeleteUser};
+export {
+  postUser,
+  loginUser,
+  putUser,
+  deleteUser,
+  getUsers,
+  getSingleUser,
+  wrongUserDeleteUser,
+};

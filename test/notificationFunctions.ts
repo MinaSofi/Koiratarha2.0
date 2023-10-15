@@ -1,40 +1,42 @@
-import { NotificationTest } from "../src/interfaces/Notification";
+import {NotificationTest} from '../src/interfaces/Notification';
+// eslint-disable-next-line node/no-unpublished-import
 import request from 'supertest';
+// eslint-disable-next-line node/no-extraneous-import
 import expect from 'expect';
 
 const postNotification = (
-    url: string | Function,
-    notification: NotificationTest,
-    token: string
+  url: string | Function,
+  notification: NotificationTest,
+  token: string
 ): Promise<NotificationTest> => {
-    return new Promise((resolve, reject) => {
-      request(url)
-        .post('/graphql')
-        .set('Content-type', 'application/json')
-        .set('Authorization', `Bearer ${token}`)
-        .send({
-          query: `mutation AddNotification($locName: String!, $time: DateTime!) {
+  return new Promise((resolve, reject) => {
+    request(url)
+      .post('/graphql')
+      .set('Content-type', 'application/json')
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        query: `mutation AddNotification($locName: String!, $time: DateTime!) {
             addNotification(loc_name: $locName, time: $time) {
               id
               loc_name
               time
             }
           }`,
-          variables: notification,
-        })
-        .expect(200, (err, response) => {
-          if (err) {
-            reject(err);
-          } else {
-            const newNotification = response.body.data.addNotification;
-            expect(newNotification).toHaveProperty('id');
-            expect(newNotification.loc_name).toBe(notification.locName);
-            expect(newNotification.time).toBe(notification.time?.toISOString());
-            expect(newNotification).toHaveProperty('time');
-            resolve(newNotification);
-          }
-        });
-    });
+        variables: notification,
+      })
+      .expect(200, (err, response) => {
+        if (err) {
+          reject(err);
+        } else {
+          const newNotification = response.body.data.addNotification;
+          expect(newNotification).toHaveProperty('id');
+          expect(newNotification.loc_name).toBe(notification.locName);
+          expect(newNotification.time).toBe(notification.time?.toISOString());
+          expect(newNotification).toHaveProperty('time');
+          resolve(newNotification);
+        }
+      });
+  });
 };
 
 const getNotificationsByUser = (
@@ -116,14 +118,14 @@ const wrongUserDeleteNotification = (
       .set('Content-type', 'application/json')
       .set('Authorization', `Bearer ${token}`)
       .send({
-          query: `mutation DeleteNotification($deleteNotificationId: ID!) {
+        query: `mutation DeleteNotification($deleteNotificationId: ID!) {
               deleteNotification(id: $deleteNotificationId) {
                   id
               }
             }`,
-          variables: {
-            deleteNotificationId: id,
-          },
+        variables: {
+          deleteNotificationId: id,
+        },
       })
       .expect(200, (err, response) => {
         if (err) {
@@ -137,4 +139,9 @@ const wrongUserDeleteNotification = (
   });
 };
 
-export {postNotification, getNotificationsByUser, wrongUserDeleteNotification, deleteNotification};
+export {
+  postNotification,
+  getNotificationsByUser,
+  wrongUserDeleteNotification,
+  deleteNotification,
+};

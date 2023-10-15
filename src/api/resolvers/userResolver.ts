@@ -1,19 +1,9 @@
 import fetchData from '../../functions/fetchData';
-// import {Animal} from '../../interfaces/Animal';
 import AuthMessageResponse from '../../interfaces/AuthMessageResponse';
 import LoginMessageResponse from '../../interfaces/LoginMessageResponse';
 import {User, UserIdWithToken} from '../../interfaces/User';
 
 export default {
-  //   Animal: {
-  //     owner: async (parent: Animal) => {
-  //       console.log(parent);
-  //       const user = await fetchData<AuthMessageResponse>(
-  //         `${process.env.AUTH_URL}/users/${parent.owner}`
-  //       );
-  //       return user.data;
-  //     },
-  //   },
   Query: {
     users: async () => {
       const users = await fetchData<AuthMessageResponse>(
@@ -22,15 +12,12 @@ export default {
       console.log(users);
       return users.data;
     },
-    userById: async (
-      _parent: undefined,
-      args: {id: string},
-    ) => {
+    userById: async (_parent: undefined, args: {id: string}) => {
       const user = await fetchData<AuthMessageResponse>(
         `${process.env.AUTH_URL}/users/${args.id}`
       );
       return user.data;
-    }
+    },
   },
   Mutation: {
     login: async (
@@ -51,6 +38,35 @@ export default {
 
       return user;
     },
+    checkToken: async (
+      _parent: undefined,
+      args: {},
+      context: UserIdWithToken
+    ) => {
+      if (!context.id) {
+        throw new Error('User not authenticated');
+      }
+
+      const headers: HeadersInit = {
+        'Content-Type': 'application/json',
+      };
+
+      if (context.token) {
+        headers.Authorization = `Bearer ${context.token}`;
+      }
+
+      const options: RequestInit = {
+        method: 'GET',
+        headers: headers,
+      };
+
+      const user = await fetchData<LoginMessageResponse>(
+        `${process.env.AUTH_URL}/users/token`,
+        options
+      );
+      console.log(user);
+      return user;
+    },
     createUser: async (
       _parent: undefined,
       args: {user: Omit<User, 'role'>}
@@ -60,6 +76,7 @@ export default {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(args.user),
       };
+
       const user = await fetchData<AuthMessageResponse>(
         `${process.env.AUTH_URL}/users`,
         options
