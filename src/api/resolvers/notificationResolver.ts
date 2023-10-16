@@ -8,11 +8,11 @@ export default {
     notifications: async () => {
       return await notificationModel.find();
     },
-    notificationsByUser: async(_: undefined, args: {userId: string}) => {
+    notificationsByUser: async (_: undefined, args: {userId: string}) => {
       const user = await notificationModel.find({user_id: args.userId});
-      
+
       return user;
-    }
+    },
   },
   Mutation: {
     addNotification: async (

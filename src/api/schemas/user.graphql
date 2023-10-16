@@ -30,6 +30,11 @@ type UpdateMessage {
   data: User
 }
 
+type CheckMessage {
+  message: String
+  data: User
+}
+
 type DeleteMessage {
   message: String
   data: User
@@ -37,6 +42,7 @@ type DeleteMessage {
 
 type Mutation {
   login(username: String!, password: String!): TokenMessage
+  checkToken: CheckMessage
   createUser(user: UserInput!): RegisterMessage
   updateUser(user: UserInput!): UpdateMessage
   deleteUser(id: String!): DeleteMessage
