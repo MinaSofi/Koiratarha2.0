@@ -30,6 +30,15 @@ export default {
         `${process.env.AUTH_URL}/users/${args.id}`
       );
       return user.data;
+    },
+    userByUsername: async (
+      _parent: undefined,
+      args: {username: string},
+    ) => {
+      const user = await fetchData<AuthMessageResponse>(
+        `${process.env.AUTH_URL}/users/user/${args.username}`
+      );
+      return user.data;
     }
   },
   Mutation: {

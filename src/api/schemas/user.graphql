@@ -11,6 +11,7 @@ input UserInput {
 type Query {
   users: [User]
   userById(id: String!): User
+  userByUsername(username: String!): User
 }
 
 type TokenMessage {
