@@ -215,6 +215,39 @@ const getSingleUser = (
   });
 };
 
+const getSingleUserByName = (
+  url: string | Function,
+  id: string
+): Promise<UserTest> => {
+  return new Promise((resolve, reject) => {
+    request(url)
+      .post('/graphql')
+      .set('Content-type', 'application/json')
+      .send({
+        query: `query UserByUsername($username: String!) {
+          userByUsername(username: $username) {
+            id
+            username
+          }
+        }`,
+        variables: {
+          username: id,
+        },
+      })
+      .expect(200, (err, response) => {
+        if (err) {
+          reject(err);
+        } else {
+          console.log(response.body);
+          const user = response.body.data.userByUsername;
+          expect(user.username).toBe(id);
+          expect(user).toHaveProperty('id');
+          resolve(response.body.data.userByUsername);
+        }
+      });
+  });
+};
+
 const wrongUserDeleteUser = (
   url: string | Function,
   id: string,
@@ -255,5 +288,6 @@ export {
   deleteUser,
   getUsers,
   getSingleUser,
+  getSingleUserByName,
   wrongUserDeleteUser,
 };

@@ -6,6 +6,7 @@ import {
     deleteUser,
     getUsers,
     getSingleUser,
+    getSingleUserByName,
     wrongUserDeleteUser
 } from './userFunctions';
 import { 
@@ -118,8 +119,12 @@ describe('Testing graphql api', () => {
     expect(dataFromToken).toHaveProperty('role');
   });
 
-  it('should return single user', async () => {
+  it('should return single user by id', async () => {
     await getSingleUser(app, userData.user.id!);
+  });
+
+  it('should return single user by username', async () => {
+    await getSingleUserByName(app, userData2.user.username);
   });
 
   it('should return array of users', async () => {
